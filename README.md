@@ -5,7 +5,7 @@
 [https://helloacm.com/images-compressor/](https://helloacm.com/images-compressor/)
 
 ###Description
-There are paid APIs such as [ImageRecycle](helloacm.com/out/imagerecycle) or [Imagfy](https://app.imagify.io/) but this one is totally free.
+There are paid APIs such as [ImageRecycle](https://helloacm.com/out/imagerecycle) or [Imagfy](https://app.imagify.io/) but this one is totally free.
 
 All images (original and optimised) are kept by default on the server for 30 days.
 Subsequent API calls should not be less than 3 seconds.
