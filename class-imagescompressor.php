@@ -102,8 +102,18 @@ class Optimizer {
             }
         }
 
+        /*
+          Parameter level is from 0 to 100
+          Parameter exif is an integer that combines the following:
+          BIT 1  --strip-all       strip all (Comment & Exif) markers from output file
+          BIT 2  --strip-com       strip Comment markers from output file
+          BIT 4  --strip-exif      strip Exif markers from output file
+          BIT 8  --strip-iptc      strip IPTC markers from output file
+          BIT 16 --strip-icc       strip ICC profile markers from output file
+        */
         $default = array(
-            'level'     => '90'
+            'level'     => '90',
+            'exif'      => '1'
         );
 
         $options = array_merge( $default, $options );
@@ -111,6 +121,7 @@ class Optimizer {
         $data = array(
             'file' => curl_file_create( $image ),
             'm'  => $options['level'],
+            'exif' => $options['exif'], 
             'key' => $this->api_key,
             'secret' => $this->api_secret
         );
