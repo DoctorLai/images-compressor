@@ -3,6 +3,7 @@
  * ImagesCompressor Class
  *
  * @author Oh@SteakOverCooked.com
+ * @Donation is appreciated:  https://helloacm.com/out/paypal
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,12 +25,15 @@
  */
  
 /*
+
 Example: 
 
-$obj = new Optimizer("$app_key", "$app_secret");
-$response = $obj->optimize("/var/www/imagerecycle/test.jpg");
-echo ($response->errCode);
-echo ($response->result->optimize); 
+  $obj = new Optimizer($app_key, $app_secret);
+  print_r($obj->check());
+  $response = $obj->optimize("/var/www/imagerecycle/test.jpg");
+  echo ($response->errCode);
+  echo ($response->result->optimize); 
+
 */
  
 
@@ -85,6 +89,7 @@ class Optimizer {
      * @param  array  $options (optional) Optimization options
      *                         array(
      *                             'level'     => integer (0 to 100),
+     *                             'exif'     => integer
      *                         ) 
      * @return array
      **/
@@ -128,6 +133,21 @@ class Optimizer {
 
         return $this->request( '/', array( 'post_data' => $data ) );
     }
+    
+    /**
+     * Check if APP_KEY and APP_SECRET is correct
+     * @return array
+     **/
+    public function check() {
+
+        $data = array(
+            'key' => $this->api_key,
+            'secret' => $this->api_secret
+        );
+
+        return $this->request( '/check/', array( 'post_data' => $data ) );
+    }    
+    
 
     /**
      * Make an HTTP call using curl.
@@ -144,7 +164,9 @@ class Optimizer {
         try {
 
             $ch      = curl_init();
-            $is_ssl  = ( isset( $_SERVER['HTTPS'] ) && ( 'on' == strtolower( $_SERVER['HTTPS'] ) || '1' == $_SERVER['HTTPS'] ) ) || ( isset( $_SERVER['SERVER_PORT'] ) && ( '443' == $_SERVER['SERVER_PORT'] ) );
+            $is_ssl  = ( isset( $_SERVER['HTTPS'] ) && 
+                      ( 'on' == strtolower( $_SERVER['HTTPS'] ) || '1' == $_SERVER['HTTPS'] ) ) || 
+                      ( isset( $_SERVER['SERVER_PORT'] ) && ( '443' == $_SERVER['SERVER_PORT'] ) );
 
             if ( 'POST' == $options['method'] ) {
                 curl_setopt( $ch, CURLOPT_POST, true );
