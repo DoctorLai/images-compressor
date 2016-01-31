@@ -1,6 +1,7 @@
 <?php
 /**
- * ImagesCompressor Class
+ * ImagesCompressor Class 
+ * URL:  https://helloacm.com/images-compressor/
  *
  * @author Oh@SteakOverCooked.com
  * @Donation is appreciated:  https://helloacm.com/out/paypal
@@ -25,22 +26,15 @@
  */
  
 /*
-
 Example: 
-
-  $obj = new Optimizer($app_key, $app_secret);
+  $obj = new ImagesCompressor($app_key, $app_secret);
   print_r($obj->check());
   $response = $obj->optimize("/var/www/imagerecycle/test.jpg");
   echo ($response->errCode);
   echo ($response->result->optimize); 
-
 */
  
-
-/* 
-  URL:  https://helloacm.com/images-compressor/ 
-*/
-class Optimizer {
+class ImagesCompressor {
     /**
      * The ImagesCompressor API endpoint
      */
@@ -148,6 +142,37 @@ class Optimizer {
         return $this->request( '/check/', array( 'post_data' => $data ) );
     }    
     
+    /**
+     * Get Image(s) 
+     * Parameter id of image
+     * @return array
+     **/
+    public function get($id = -1) {
+
+        $data = array(
+            'key' => $this->api_key,
+            'secret' => $this->api_secret,
+            'id' => $id
+        );
+
+        return $this->request( '/list/', array( 'post_data' => $data ) );
+    }   
+    
+    /**
+     * Delete Image(s) 
+     * Parameter id of image
+     * @return array
+     **/
+    public function delete($id = -1) {
+
+        $data = array(
+            'key' => $this->api_key,
+            'secret' => $this->api_secret,
+            'id' => $id
+        );
+
+        return $this->request( '/delete/', array( 'post_data' => $data ) );
+    }               
 
     /**
      * Make an HTTP call using curl.
@@ -200,4 +225,3 @@ class Optimizer {
         return $response;
     }
 };
-
