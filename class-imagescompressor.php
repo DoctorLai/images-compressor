@@ -38,7 +38,7 @@ class ImagesCompressor {
     /**
      * The ImagesCompressor API endpoint
      */
-    const API_ENDPOINT = 'https://uploadbeta.com/api/images-compressor';
+    const API_ENDPOINT = 'https://helloacm.com/api/images-compressor';
 
     /**
      * The ImagesCompressor API key
