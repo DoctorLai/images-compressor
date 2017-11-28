@@ -3,7 +3,7 @@
  * ImagesCompressor Class 
  * URL:  https://helloacm.com/images-compressor/
  *
- * @author Oh@SteakOverCooked.com
+ * @author dr.zhihua.lai@gmail.com
  * @Donation is appreciated:  https://helloacm.com/out/paypal
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
